@@ -21,7 +21,6 @@ const Parsonal = () => {
   }
   const handleSave=()=>{
     const json:string=JSON.stringify(mytodo,undefined,1);
-    console.log(typeof(json))
     localStorage.setItem("key",json);
     window.alert("保存しました");
   }
