@@ -3,6 +3,7 @@ import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot } from "firebas
 import { ChangeEvent, useEffect, useState } from "react";
 import db from "../../src/firebase";
 import parsonal from "../../styles/parsonal.css";
+import RestoreFromTrashRoundedIcon from '@mui/icons-material/RestoreFromTrashRounded';
 type todos={
   id:string;
   checked:boolean;
@@ -81,11 +82,10 @@ const Entire = () => {
                   {item.name}
                 </div>
                 <div>
-                  <button
+                  <RestoreFromTrashRoundedIcon
                     onClick={()=>deleteitem(item.id)}
-                  >
-                    削除
-                  </button>
+                    sx={{fontSize:30}}
+                  />
                 </div>
               </li>
             ))}

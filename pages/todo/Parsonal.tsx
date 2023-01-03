@@ -1,5 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import parsonal from "../../styles/parsonal.css";
+import RestoreFromTrashRoundedIcon from '@mui/icons-material/RestoreFromTrashRounded';
 type todos={
   name:string;
   checked:boolean;
@@ -61,11 +62,12 @@ const Parsonal = () => {
                   {item.name}
                 </div>
                 <div>
-                  <button
+                  <RestoreFromTrashRoundedIcon
                     onClick={()=>deleteitem(index)}
-                  >
-                    削除
-                  </button>
+                    sx={{fontSize:30}}
+                  />
+                    
+                  
                 </div>
               </li>
             ))}

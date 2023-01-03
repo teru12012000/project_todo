@@ -15,6 +15,8 @@ const parsonal={
   li:style({
     paddingTop:"25px",
     paddingBottom:"25px",
+    width:"80%",
+    margin:"auto",
     listStyle:"none",
     textAlign:"left",
     backgroundColor:"#FFCC99",
