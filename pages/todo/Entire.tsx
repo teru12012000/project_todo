@@ -35,7 +35,6 @@ const Entire = () => {
     onSnapshot(postData,(post)=>{
       setTodo(post.docs.map((doc)=>({id:doc.id ,...doc.data()} as todos)))
     })
-    console.log(mytodo)
   },[])
   //登録ボタンクリックするとき
   const handleClick=()=>{

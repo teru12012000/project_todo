@@ -1,0 +1,53 @@
+[debug] [2023-01-03T07:12:22.795Z] ----------------------------------------------------------------------
+[debug] [2023-01-03T07:12:22.798Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\sion0\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-01-03T07:12:22.799Z] CLI Version:   11.19.0
+[debug] [2023-01-03T07:12:22.799Z] Platform:      win32
+[debug] [2023-01-03T07:12:22.799Z] Node Version:  v16.14.0
+[debug] [2023-01-03T07:12:22.818Z] Time:          Tue Jan 03 2023 16:12:22 GMT+0900 (日本標準時)
+[debug] [2023-01-03T07:12:22.819Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-03T07:12:22.946Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-03T07:12:22.947Z] > authorizing via signed-in user (sion2769@gmail.com)
+[debug] [2023-01-03T07:12:22.948Z] [iam] checking project project-todo-aa926 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-01-03T07:12:22.959Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-todo-aa926:testIamPermissions [none]
+[debug] [2023-01-03T07:12:22.959Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-todo-aa926:testIamPermissions x-goog-quota-user=projects/project-todo-aa926
+[debug] [2023-01-03T07:12:22.960Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-todo-aa926:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-03T07:12:23.717Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-todo-aa926:testIamPermissions 200
+[debug] [2023-01-03T07:12:23.717Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-todo-aa926:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-03T07:12:23.719Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/project-todo-aa926 [none]
+[debug] [2023-01-03T07:12:24.058Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/project-todo-aa926 200
+[debug] [2023-01-03T07:12:24.059Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/project-todo-aa926 {"projectId":"project-todo-aa926","projectNumber":"329510218836","displayName":"Project-todo","name":"projects/project-todo-aa926","resources":{"hostingSite":"project-todo-aa926"},"state":"ACTIVE","etag":"1_f7c9030c-0ad3-4ad6-8d21-da435a439d3f"}
+[debug] [2023-01-03T07:12:32.386Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/project-todo-aa926/sites pageToken=&pageSize=10
+[debug] [2023-01-03T07:12:33.242Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/project-todo-aa926/sites 200
+[debug] [2023-01-03T07:12:33.242Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/project-todo-aa926/sites {"sites":[{"name":"projects/project-todo-aa926/sites/project-todo-aa926","defaultUrl":"https://project-todo-aa926.web.app","appId":"1:329510218836:web:abaa95b9026cce7e2911c1","type":"DEFAULT_SITE"}]}
+[debug] [2023-01-03T07:12:33.244Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:329510218836:web:abaa95b9026cce7e2911c1/config [none]
+[debug] [2023-01-03T07:12:34.575Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:329510218836:web:abaa95b9026cce7e2911c1/config 200
+[debug] [2023-01-03T07:12:34.576Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:329510218836:web:abaa95b9026cce7e2911c1/config {"projectId":"project-todo-aa926","appId":"1:329510218836:web:abaa95b9026cce7e2911c1","storageBucket":"project-todo-aa926.appspot.com","apiKey":"AIzaSyBE1mG7hi-Hy4Qp5uJGX2KGtV_2_5oGQU8","authDomain":"project-todo-aa926.firebaseapp.com","messagingSenderId":"329510218836"}
+[debug] [2023-01-03T07:13:10.809Z] Error: EPERM: operation not permitted, open 'C:\Users\sion0\OneDrive\デスクトップ\project\todo\.next\trace'
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2023-01-03T07:17:47.474Z] ----------------------------------------------------------------------
+[debug] [2023-01-03T07:17:47.477Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\sion0\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-01-03T07:17:47.478Z] CLI Version:   11.19.0
+[debug] [2023-01-03T07:17:47.478Z] Platform:      win32
+[debug] [2023-01-03T07:17:47.478Z] Node Version:  v16.14.0
+[debug] [2023-01-03T07:17:47.495Z] Time:          Tue Jan 03 2023 16:17:47 GMT+0900 (日本標準時)
+[debug] [2023-01-03T07:17:47.496Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-03T07:17:47.616Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-03T07:17:47.618Z] > authorizing via signed-in user (sion2769@gmail.com)
+[debug] [2023-01-03T07:17:47.618Z] [iam] checking project project-todo-aa926 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-01-03T07:17:47.625Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-todo-aa926:testIamPermissions [none]
+[debug] [2023-01-03T07:17:47.626Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-todo-aa926:testIamPermissions x-goog-quota-user=projects/project-todo-aa926
+[debug] [2023-01-03T07:17:47.626Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-todo-aa926:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-03T07:17:48.389Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-todo-aa926:testIamPermissions 200
+[debug] [2023-01-03T07:17:48.389Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-todo-aa926:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-03T07:17:48.391Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/project-todo-aa926 [none]
+[debug] [2023-01-03T07:17:48.717Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/project-todo-aa926 200
+[debug] [2023-01-03T07:17:48.718Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/project-todo-aa926 {"projectId":"project-todo-aa926","projectNumber":"329510218836","displayName":"Project-todo","name":"projects/project-todo-aa926","resources":{"hostingSite":"project-todo-aa926"},"state":"ACTIVE","etag":"1_f7c9030c-0ad3-4ad6-8d21-da435a439d3f"}
+[debug] [2023-01-03T07:17:56.664Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/project-todo-aa926/sites pageToken=&pageSize=10
+[debug] [2023-01-03T07:17:57.539Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/project-todo-aa926/sites 200
+[debug] [2023-01-03T07:17:57.539Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/project-todo-aa926/sites {"sites":[{"name":"projects/project-todo-aa926/sites/project-todo-aa926","defaultUrl":"https://project-todo-aa926.web.app","appId":"1:329510218836:web:abaa95b9026cce7e2911c1","type":"DEFAULT_SITE"}]}
+[debug] [2023-01-03T07:17:57.540Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:329510218836:web:abaa95b9026cce7e2911c1/config [none]
+[debug] [2023-01-03T07:17:59.031Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:329510218836:web:abaa95b9026cce7e2911c1/config 200
+[debug] [2023-01-03T07:17:59.031Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:329510218836:web:abaa95b9026cce7e2911c1/config {"projectId":"project-todo-aa926","appId":"1:329510218836:web:abaa95b9026cce7e2911c1","storageBucket":"project-todo-aa926.appspot.com","apiKey":"AIzaSyBE1mG7hi-Hy4Qp5uJGX2KGtV_2_5oGQU8","authDomain":"project-todo-aa926.firebaseapp.com","messagingSenderId":"329510218836"}
