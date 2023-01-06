@@ -38,7 +38,16 @@ const Parsonal = () => {
   const handlechangetext=(e: ChangeEvent<HTMLInputElement>)=>{
     setText(e.currentTarget.value);
   }
-  
+  //チェックボックスがクリックされたとき
+  const changeRadio=(ind:number)=>{
+    const todo:todos[]=mytodo.map((item:todos,index:number)=>(
+      index===ind?{
+        name:item.name,
+        checked:!item.checked
+      }:item
+      ));
+      setTodo(todo);
+  }
   return (
     <div className={parsonal.content}>
       <h1>TODO</h1>
@@ -59,6 +68,11 @@ const Parsonal = () => {
             {mytodo.map((item:todos,index:number)=>(
               <li key={index} className={parsonal.li}>
                 <div>
+                  <input 
+                    type="radio"
+                    checked={item.checked}
+                    onClick={()=>changeRadio(index)}
+                  />
                   {item.name}
                 </div>
                 <div>

@@ -1,5 +1,5 @@
 import { async } from "@firebase/util";
-import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, updateDoc } from "firebase/firestore";
 import { ChangeEvent, useEffect, useState } from "react";
 import db from "../../src/firebase";
 import parsonal from "../../styles/parsonal.css";
@@ -23,7 +23,7 @@ const Entire = () => {
       setTodo(data);
     })
     onSnapshot(postData,(post)=>{
-      setTodo(post.docs.map((doc)=>({id:doc.id ,...doc.data()} as todos)))
+      setTodo(post.docs.map((doc)=>({...doc.data()} as todos)))
     })
   }
   useEffect(()=>{
@@ -57,6 +57,20 @@ const Entire = () => {
   const handlechangetext=(e: ChangeEvent<HTMLInputElement>)=>{
     setText(e.currentTarget.value);
   }
+  //チェックボックスがクリックされたとき
+  const changeRadio=(id:string)=>{
+    const Data=doc(db,"posts",id);
+    const postData=collection(db,"posts");
+    mytodo.map((item:todos,index:number)=>(
+      item.id===id?updateDoc(Data,{
+        name:item.name,
+        checked:!item.checked,
+      }):item
+    ));
+    onSnapshot(postData,(post)=>{
+      setTodo(post.docs.map((doc)=>({...doc.data()} as todos)))
+    })
+  }
   
   return (
     <div className={parsonal.content}>
@@ -78,6 +92,11 @@ const Entire = () => {
             {mytodo.map((item:todos,index:number)=>(
               <li key={index} className={parsonal.li}>
                 <div>
+                <input 
+                    type="radio"
+                    checked={item.checked}
+                    onClick={()=>changeRadio(item.id)}
+                  />
                   {item.name}
                 </div>
                 <div>
