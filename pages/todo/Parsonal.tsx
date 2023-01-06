@@ -69,9 +69,9 @@ const Parsonal = () => {
               <li key={index} className={parsonal.li}>
                 <div>
                   <input 
-                    type="radio"
+                    type="checkbox"
                     checked={item.checked}
-                    onClick={()=>changeRadio(index)}
+                    onChange={()=>changeRadio(index)}
                   />
                   {item.name}
                 </div>
