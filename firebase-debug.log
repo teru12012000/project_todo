@@ -51,3 +51,39 @@
 [debug] [2023-01-03T07:17:57.540Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:329510218836:web:abaa95b9026cce7e2911c1/config [none]
 [debug] [2023-01-03T07:17:59.031Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:329510218836:web:abaa95b9026cce7e2911c1/config 200
 [debug] [2023-01-03T07:17:59.031Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:329510218836:web:abaa95b9026cce7e2911c1/config {"projectId":"project-todo-aa926","appId":"1:329510218836:web:abaa95b9026cce7e2911c1","storageBucket":"project-todo-aa926.appspot.com","apiKey":"AIzaSyBE1mG7hi-Hy4Qp5uJGX2KGtV_2_5oGQU8","authDomain":"project-todo-aa926.firebaseapp.com","messagingSenderId":"329510218836"}
+[debug] [2023-01-06T08:59:38.738Z] ----------------------------------------------------------------------
+[debug] [2023-01-06T08:59:38.742Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\sion0\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-01-06T08:59:38.742Z] CLI Version:   11.19.0
+[debug] [2023-01-06T08:59:38.742Z] Platform:      win32
+[debug] [2023-01-06T08:59:38.742Z] Node Version:  v16.14.0
+[debug] [2023-01-06T08:59:38.768Z] Time:          Fri Jan 06 2023 17:59:38 GMT+0900 (日本標準時)
+[debug] [2023-01-06T08:59:38.769Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-06T08:59:38.777Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2023-01-06T08:59:38.907Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-06T08:59:38.907Z] > authorizing via signed-in user (sion2769@gmail.com)
+[debug] [2023-01-06T08:59:38.907Z] [iam] checking project project-todo-aa926 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-01-06T08:59:38.909Z] > refreshing access token with scopes: []
+[debug] [2023-01-06T08:59:38.910Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-01-06T08:59:38.911Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-06T08:59:39.086Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-01-06T08:59:39.086Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-06T08:59:39.119Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-todo-aa926:testIamPermissions [none]
+[debug] [2023-01-06T08:59:39.119Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-todo-aa926:testIamPermissions x-goog-quota-user=projects/project-todo-aa926
+[debug] [2023-01-06T08:59:39.119Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-todo-aa926:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-06T08:59:39.275Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2023-01-06T08:59:39.275Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2023-01-06T08:59:39.813Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-todo-aa926:testIamPermissions 200
+[debug] [2023-01-06T08:59:39.813Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/project-todo-aa926:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-06T08:59:39.814Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/project-todo-aa926 [none]
+[debug] [2023-01-06T08:59:40.235Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/project-todo-aa926 200
+[debug] [2023-01-06T08:59:40.235Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/project-todo-aa926 {"projectId":"project-todo-aa926","projectNumber":"329510218836","displayName":"Project-todo","name":"projects/project-todo-aa926","resources":{"hostingSite":"project-todo-aa926"},"state":"ACTIVE","etag":"1_7bb54e63-dbf8-4071-a1dc-e7f9caa14875"}
+[debug] [2023-01-06T08:59:46.437Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/project-todo-aa926/sites pageToken=&pageSize=10
+[debug] [2023-01-06T08:59:47.301Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/project-todo-aa926/sites 200
+[debug] [2023-01-06T08:59:47.301Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/project-todo-aa926/sites {"sites":[{"name":"projects/project-todo-aa926/sites/project-todo-aa926","defaultUrl":"https://project-todo-aa926.web.app","appId":"1:329510218836:web:abaa95b9026cce7e2911c1","type":"DEFAULT_SITE"}]}
+[debug] [2023-01-06T08:59:47.302Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:329510218836:web:abaa95b9026cce7e2911c1/config [none]
+[debug] [2023-01-06T08:59:48.457Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:329510218836:web:abaa95b9026cce7e2911c1/config 200
+[debug] [2023-01-06T08:59:48.457Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:329510218836:web:abaa95b9026cce7e2911c1/config {"projectId":"project-todo-aa926","appId":"1:329510218836:web:abaa95b9026cce7e2911c1","storageBucket":"project-todo-aa926.appspot.com","apiKey":"AIzaSyBE1mG7hi-Hy4Qp5uJGX2KGtV_2_5oGQU8","authDomain":"project-todo-aa926.firebaseapp.com","messagingSenderId":"329510218836"}
+[debug] [2023-01-06T09:00:13.276Z] Error: EPERM: operation not permitted, open 'C:\Users\sion0\OneDrive\デスクトップ\project\todo\.next\trace'
+[error] 
+[error] Error: An unexpected error has occurred.
