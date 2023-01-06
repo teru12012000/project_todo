@@ -13,6 +13,7 @@ type todos={
 const Entire = () => {
   const [inputtext,setText]=useState<string>("");
   const [mytodo,setTodo]=useState<todos[]>([]);
+  const [dec,setDec]=useState<string[]>([]);
   
   const deleteitem=async(id:string)=>{
     const postData=collection(db,"posts");
@@ -23,7 +24,7 @@ const Entire = () => {
       setTodo(data);
     })
     onSnapshot(postData,(post)=>{
-      setTodo(post.docs.map((doc)=>({...doc.data()} as todos)))
+      setTodo(post.docs.map((doc)=>({id:id,...doc.data()} as todos)))
     })
   }
   useEffect(()=>{
@@ -58,17 +59,14 @@ const Entire = () => {
     setText(e.currentTarget.value);
   }
   //チェックボックスがクリックされたとき
-  const changeRadio=(id:string)=>{
-    const Data=doc(db,"posts",id);
+  const changeRadio=async(id:string,check:boolean)=>{
+    console.log(id);
     const postData=collection(db,"posts");
-    mytodo.map((item:todos,index:number)=>(
-      item.id===id?updateDoc(Data,{
-        name:item.name,
-        checked:!item.checked,
-      }):item
-    ));
+    await updateDoc(doc(db,"posts",id),{
+        checked:!check,
+      })
     onSnapshot(postData,(post)=>{
-      setTodo(post.docs.map((doc)=>({...doc.data()} as todos)))
+      setTodo(post.docs.map((doc)=>({id:id,...doc.data()} as todos)))
     })
   }
   
@@ -91,12 +89,12 @@ const Entire = () => {
           <ul className={parsonal.ul}>
             {mytodo.map((item:todos,index:number)=>(
               <li key={index} className={parsonal.li}>
-                <div>
+                <div style={{fontSize:"20px"}}>
                 <input 
-                    type="radio"
-                    checked={item.checked}
-                    onClick={()=>changeRadio(item.id)}
-                  />
+                  type="checkbox"
+                  checked={item.checked}
+                  onChange={()=>changeRadio(item.id,item.checked)}
+                />
                   {item.name}
                 </div>
                 <div>
