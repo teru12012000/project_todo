@@ -8,7 +8,6 @@ type todos={
 const Parsonal = () => {
   const [inputtext,setText]=useState<string>("");
   const [mytodo,setTodo]=useState<todos[]>([]);
-  
   useEffect(()=>{
     const json:string|null=localStorage.getItem("key")
     if(json){
@@ -80,8 +79,6 @@ const Parsonal = () => {
                     onClick={()=>deleteitem(index)}
                     sx={{fontSize:30}}
                   />
-                    
-                  
                 </div>
               </li>
             ))}

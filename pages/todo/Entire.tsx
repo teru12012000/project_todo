@@ -13,7 +13,6 @@ type todos={
 const Entire = () => {
   const [inputtext,setText]=useState<string>("");
   const [mytodo,setTodo]=useState<todos[]>([]);
-  const [dec,setDec]=useState<string[]>([]);
   
   const deleteitem=async(id:string)=>{
     const postData=collection(db,"posts");
