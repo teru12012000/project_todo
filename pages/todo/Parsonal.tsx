@@ -1,19 +1,31 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import parsonal from "../../styles/parsonal.css";
 import RestoreFromTrashRoundedIcon from '@mui/icons-material/RestoreFromTrashRounded';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Form } from "react-bootstrap";
+import { Button, colors, IconButton, Input, Switch, TextField } from "@mui/material";
 type todos={
   name:string;
   checked:boolean;
 }
+const label = { inputProps: { 'aria-label': 'Switch demo' } };
 const Parsonal = () => {
+
   const [inputtext,setText]=useState<string>("");
   const [mytodo,setTodo]=useState<todos[]>([]);
+  const [back,setBack]=useState<string[]>([]);
+  const [font,setFont]=useState<string[]>([]);
   useEffect(()=>{
     const json:string|null=localStorage.getItem("key")
     if(json){
       setTodo(JSON.parse(json));
     }
+    
   },[])
+  useEffect(()=>{
+    setBack(mytodo.map((item:todos)=>(item.checked?"gray":"#FFCC99")));
+    setFont(mytodo.map((item:todos)=>(item.checked?"Black":"blue")))
+  },[mytodo])
   const deleteitem=(ind:number)=>{
     //index===ind以外のものを残す
     const todo:todos[]=mytodo.filter((item:todos,index:number)=>(ind!==index));
@@ -32,6 +44,8 @@ const Parsonal = () => {
     }
     setTodo([data,...mytodo]);
     setText("");
+    setBack(["#FFCC99",...back]);
+    setFont(["blue",...font])
   }
   //テキストが入力された際の処理
   const handlechangetext=(e: ChangeEvent<HTMLInputElement>)=>{
@@ -46,49 +60,67 @@ const Parsonal = () => {
       }:item
       ));
       setTodo(todo);
+      setBack(mytodo.map((item:todos,index:number)=>((ind===index&&item.checked)?"#FFCC99":"gray")));
+      setFont(mytodo.map((item:todos,index:number)=>((ind===index&&item.checked)?"#0000CC":"black")));
   }
   return (
     <div className={parsonal.content}>
       <h1>TODO</h1>
         <div>
-          <input 
-            type="text"
+          <TextField 
+            id="outlined-basic" 
+            label="Input TODO!" 
+            variant="outlined" 
             value={inputtext}
+            size="small"
             onChange={(e:ChangeEvent<HTMLInputElement>)=>handlechangetext(e)}
           />
-          <input
-            type="button"
-            value="登録"
+          <Button 
+            variant="contained"
+            size="large"
             onClick={()=>handleClick()}
-          />
+          >登録</Button>
         </div>
         <div>
           <ul className={parsonal.ul}>
             {mytodo.map((item:todos,index:number)=>(
-              <li key={index} className={parsonal.li}>
+              <li key={index} 
+                className={parsonal.li}
+                style={{
+                  backgroundColor:back[index],
+                  color:font[index]
+                }}
+              >
                 <div>
-                  <input 
-                    type="checkbox"
-                    checked={item.checked}
-                    onChange={()=>changeRadio(index)}
-                  />
+                <Switch 
+                  {...label}
+                  checked={item.checked}
+                  onChange={()=>changeRadio(index)}
+                />
+                  
                   {item.name}
                 </div>
-                <div>
-                  <RestoreFromTrashRoundedIcon
-                    onClick={()=>deleteitem(index)}
+                <div
+                  onClick={()=>deleteitem(index)}
+                >
+                  <IconButton 
+                    aria-label="delete" 
+                    color="primary"
+                    style={{cursor:"pointer"}}
                     sx={{fontSize:30}}
-                  />
+                  >
+                    <DeleteIcon />
+                  </IconButton>
                 </div>
               </li>
             ))}
           </ul>
         </div>
-        <input
-            type="button"
-            value="保存"
+        <Button 
+            variant="contained"
+            size="large"
             onClick={()=>handleSave()}
-          />
+        >保存</Button>
     </div>
   );
 }
