@@ -4,6 +4,9 @@ import RestoreFromTrashRoundedIcon from '@mui/icons-material/RestoreFromTrashRou
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Form } from "react-bootstrap";
 import { Button, colors, IconButton, Input, Switch, TextField } from "@mui/material";
+import Head from "next/head";
+import Back from "../../components/Back";
+
 type todos={
   name:string;
   checked:boolean;
@@ -64,63 +67,71 @@ const Parsonal = () => {
       setFont(mytodo.map((item:todos,index:number)=>((ind===index&&item.checked)?"#0000CC":"black")));
   }
   return (
-    <div className={parsonal.content}>
-      <h1>TODO</h1>
-        <div>
-          <TextField 
-            id="outlined-basic" 
-            label="Input TODO!" 
-            variant="outlined" 
-            value={inputtext}
-            size="small"
-            onChange={(e:ChangeEvent<HTMLInputElement>)=>handlechangetext(e)}
-          />
-          <Button 
-            variant="contained"
-            size="large"
-            onClick={()=>handleClick()}
-          >登録</Button>
-        </div>
-        <div>
-          <ul className={parsonal.ul}>
-            {mytodo.map((item:todos,index:number)=>(
-              <li key={index} 
-                className={parsonal.li}
-                style={{
-                  backgroundColor:back[index],
-                  color:font[index]
-                }}
-              >
-                <div>
-                <Switch 
-                  {...label}
-                  checked={item.checked}
-                  onChange={()=>changeRadio(index)}
-                />
-                  
-                  {item.name}
-                </div>
-                <div
-                  onClick={()=>deleteitem(index)}
+    <div>
+      <Head>
+        <title>ProjectTodo</title>
+        <meta name="description" content="個人用のTODOアプリです" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <Back link={"/"}/>
+      <div className={parsonal.content}>
+        <h1>TODO</h1>
+          <div>
+            <TextField 
+              id="outlined-basic" 
+              label="Input TODO!" 
+              variant="outlined" 
+              value={inputtext}
+              size="small"
+              onChange={(e:ChangeEvent<HTMLInputElement>)=>handlechangetext(e)}
+            />
+            <Button 
+              variant="contained"
+              size="large"
+              onClick={()=>handleClick()}
+            >登録</Button>
+          </div>
+          <div>
+            <ul className={parsonal.ul}>
+              {mytodo.map((item:todos,index:number)=>(
+                <li key={index} 
+                  className={parsonal.li}
+                  style={{
+                    backgroundColor:back[index],
+                    color:font[index]
+                  }}
                 >
-                  <IconButton 
-                    aria-label="delete" 
-                    color="primary"
-                    style={{cursor:"pointer"}}
-                    sx={{fontSize:30}}
+                  <div>
+                  <Switch 
+                    {...label}
+                    checked={item.checked}
+                    onChange={()=>changeRadio(index)}
+                  />
+
+                    {item.name}
+                  </div>
+                  <div
+                    onClick={()=>deleteitem(index)}
                   >
-                    <DeleteIcon />
-                  </IconButton>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <Button 
-            variant="contained"
-            size="large"
-            onClick={()=>handleSave()}
-        >保存</Button>
+                    <IconButton 
+                      aria-label="delete" 
+                      color="primary"
+                      style={{cursor:"pointer"}}
+                      sx={{fontSize:30}}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <Button 
+              variant="contained"
+              size="large"
+              onClick={()=>handleSave()}
+          >保存</Button>
+      </div>
     </div>
   );
 }

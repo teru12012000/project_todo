@@ -6,6 +6,8 @@ import parsonal from "../../styles/parsonal.css";
 import DeleteIcon from '@mui/icons-material/Delete';
 import RestoreFromTrashRoundedIcon from '@mui/icons-material/RestoreFromTrashRounded';
 import { Button, IconButton, Switch, TextField } from "@mui/material";
+import Head from "next/head";
+import Back from "../../components/Back";
 type todos={
   id:string;
   checked:boolean;
@@ -75,60 +77,67 @@ const Entire = () => {
       setTodo(post.docs.map((doc)=>({id:id,...doc.data()} as todos)))
     })
   }
-  
   return (
-    <div className={parsonal.content}>
-      <h1>TODO</h1>
-        <div>
-          <TextField 
-            id="outlined-basic" 
-            label="Input TODO!" 
-            variant="outlined" 
-            value={inputtext}
-            size="small"
-            onChange={(e:ChangeEvent<HTMLInputElement>)=>handlechangetext(e)}
-          />
-          <Button 
-            variant="contained"
-            size="large"
-            onClick={()=>handleClick()}
-          >登録</Button>
-        </div>
-        <div>
-          <ul className={parsonal.ul}>
-            {mytodo.map((item:todos,index:number)=>(
-              <li key={index} 
-                className={parsonal.li}
-                style={{
-                  backgroundColor:back[index],
-                  color:font[index]
-                }}
-              >
-                <div>
-                <Switch 
-                  {...label}
-                  checked={item.checked}
-                  onChange={()=>changeRadio(item.id,item.checked)}
-                />
-                  
-                  {item.name}
-                </div>
-                <div
-                  onClick={()=>deleteitem(item.id)}
+    <div>
+      <Head>
+        <title>ProjectTodo</title>
+        <meta name="description" content="全体共有用のTODOアプリです" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <Back link={"/"}/>
+      <div className={parsonal.content}>
+        <h1>TODO</h1>
+          <div>
+            <TextField 
+              id="outlined-basic" 
+              label="Input TODO!" 
+              variant="outlined" 
+              value={inputtext}
+              size="small"
+              onChange={(e:ChangeEvent<HTMLInputElement>)=>handlechangetext(e)}
+            />
+            <Button 
+              variant="contained"
+              size="large"
+              onClick={()=>handleClick()}
+            >登録</Button>
+          </div>
+          <div>
+            <ul className={parsonal.ul}>
+              {mytodo.map((item:todos,index:number)=>(
+                <li key={index} 
+                  className={parsonal.li}
+                  style={{
+                    backgroundColor:back[index],
+                    color:font[index]
+                  }}
                 >
-                  <IconButton 
-                    aria-label="delete" 
-                    color="primary"
-                    style={{cursor:"pointer"}}
-                    sx={{fontSize:30}}
+                  <div>
+                  <Switch 
+                    {...label}
+                    checked={item.checked}
+                    onChange={()=>changeRadio(item.id,item.checked)}
+                  />
+                    
+                    {item.name}
+                  </div>
+                  <div
+                    onClick={()=>deleteitem(item.id)}
                   >
-                    <DeleteIcon />
-                  </IconButton>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+                    <IconButton 
+                      aria-label="delete" 
+                      color="primary"
+                      style={{cursor:"pointer"}}
+                      sx={{fontSize:30}}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+      </div>
     </div>
   );
 }
