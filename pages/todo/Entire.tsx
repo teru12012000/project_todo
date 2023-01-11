@@ -3,17 +3,20 @@ import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, updateDoc } fr
 import { ChangeEvent, useEffect, useState } from "react";
 import db from "../../src/firebase";
 import parsonal from "../../styles/parsonal.css";
+import DeleteIcon from '@mui/icons-material/Delete';
 import RestoreFromTrashRoundedIcon from '@mui/icons-material/RestoreFromTrashRounded';
+import { Button, IconButton, Switch, TextField } from "@mui/material";
 type todos={
   id:string;
   checked:boolean;
   name:string;
 }
-
+const label = { inputProps: { 'aria-label': 'Switch demo' } };
 const Entire = () => {
   const [inputtext,setText]=useState<string>("");
   const [mytodo,setTodo]=useState<todos[]>([]);
-  
+  const [back,setBack]=useState<string[]>([]);
+  const [font,setFont]=useState<string[]>([]);
   const deleteitem=async(id:string)=>{
     const postData=collection(db,"posts");
     //console.log(id)
@@ -36,6 +39,10 @@ const Entire = () => {
       setTodo(post.docs.map((doc)=>({id:doc.id ,...doc.data()} as todos)))
     })
   },[])
+  useEffect(()=>{
+    setBack(mytodo.map((item:todos)=>(item.checked?"gray":"#FFCC99")));
+    setFont(mytodo.map((item:todos)=>(item.checked?"Black":"blue")))
+  },[mytodo])
   //登録ボタンクリックするとき
   const handleClick=()=>{
     const postData=collection(db,"posts");
@@ -73,34 +80,50 @@ const Entire = () => {
     <div className={parsonal.content}>
       <h1>TODO</h1>
         <div>
-          <input 
-            type="text"
+          <TextField 
+            id="outlined-basic" 
+            label="Input TODO!" 
+            variant="outlined" 
             value={inputtext}
+            size="small"
             onChange={(e:ChangeEvent<HTMLInputElement>)=>handlechangetext(e)}
           />
-          <input
-            type="button"
-            value="登録"
+          <Button 
+            variant="contained"
+            size="large"
             onClick={()=>handleClick()}
-          />
+          >登録</Button>
         </div>
         <div>
           <ul className={parsonal.ul}>
             {mytodo.map((item:todos,index:number)=>(
-              <li key={index} className={parsonal.li}>
-                <div style={{fontSize:"20px"}}>
-                <input 
-                  type="checkbox"
+              <li key={index} 
+                className={parsonal.li}
+                style={{
+                  backgroundColor:back[index],
+                  color:font[index]
+                }}
+              >
+                <div>
+                <Switch 
+                  {...label}
                   checked={item.checked}
                   onChange={()=>changeRadio(item.id,item.checked)}
                 />
+                  
                   {item.name}
                 </div>
-                <div>
-                  <RestoreFromTrashRoundedIcon
-                    onClick={()=>deleteitem(item.id)}
+                <div
+                  onClick={()=>deleteitem(item.id)}
+                >
+                  <IconButton 
+                    aria-label="delete" 
+                    color="primary"
+                    style={{cursor:"pointer"}}
                     sx={{fontSize:30}}
-                  />
+                  >
+                    <DeleteIcon />
+                  </IconButton>
                 </div>
               </li>
             ))}
