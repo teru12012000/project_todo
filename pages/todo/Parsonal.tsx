@@ -14,10 +14,11 @@ type todos={
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 const Parsonal = () => {
 
-  const [inputtext,setText]=useState<string>("");
-  const [mytodo,setTodo]=useState<todos[]>([]);
-  const [back,setBack]=useState<string[]>([]);
-  const [font,setFont]=useState<string[]>([]);
+  const [inputtext,setText]=useState<string>("");//テキストボックスの値
+  const [mytodo,setTodo]=useState<todos[]>([]); //リスト格納(todo)
+  const [back,setBack]=useState<string[]>([]);//背景色
+  const [font,setFont]=useState<string[]>([]);//文字の色
+  //リロード時に保存用のデータを持ってくる
   useEffect(()=>{
     const json:string|null=localStorage.getItem("key")
     if(json){
@@ -25,6 +26,7 @@ const Parsonal = () => {
     }
     
   },[])
+  //mytodoリストが更新されたときに色の設定
   useEffect(()=>{
     setBack(mytodo.map((item:todos)=>(item.checked?"gray":"#FFCC99")));
     setFont(mytodo.map((item:todos)=>(item.checked?"Black":"blue")))
@@ -34,6 +36,7 @@ const Parsonal = () => {
     const todo:todos[]=mytodo.filter((item:todos,index:number)=>(ind!==index));
     setTodo(todo);
   }
+  //保存ボタンが押されたとき
   const handleSave=()=>{
     const json:string=JSON.stringify(mytodo,undefined,1);
     localStorage.setItem("key",json);
