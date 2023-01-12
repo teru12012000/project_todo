@@ -21,7 +21,6 @@ const Entire = () => {
   const [font,setFont]=useState<string[]>([]);
   const deleteitem=async(id:string)=>{
     const postData=collection(db,"posts");
-    //console.log(id)
     await deleteDoc(doc(db,"posts",id));
     getDocs(postData).then((snapShot)=>{
       const data:todos[]=snapShot.docs.map((doc)=>({id:doc.id ,...doc.data()} as todos))
@@ -41,6 +40,7 @@ const Entire = () => {
       setTodo(post.docs.map((doc)=>({id:doc.id ,...doc.data()} as todos)))
     })
   },[])
+  //mytodoが変わった時の色の変更
   useEffect(()=>{
     setBack(mytodo.map((item:todos)=>(item.checked?"gray":"#FFCC99")));
     setFont(mytodo.map((item:todos)=>(item.checked?"Black":"blue")))
@@ -68,7 +68,6 @@ const Entire = () => {
   }
   //チェックボックスがクリックされたとき
   const changeRadio=async(id:string,check:boolean)=>{
-    console.log(id);
     const postData=collection(db,"posts");
     await updateDoc(doc(db,"posts",id),{
         checked:!check,
