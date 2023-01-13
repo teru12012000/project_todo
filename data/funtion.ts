@@ -99,7 +99,7 @@ export const changeRadio=async(
         checked:!check,
       })
     onSnapshot(postData,(post)=>{
-      setTodo(post.docs.map((doc)=>({id:id,...doc.data()} as todos)))
+      setTodo(post.docs.map((doc)=>({id:doc.id,...doc.data()} as todos)))
     })
   }else{
     const todo:todos[]=mytodo.map((item:todos,index:number)=>(
