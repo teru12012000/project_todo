@@ -76,12 +76,9 @@ export const deleteitem=async(
   if(id){
     const postData=collection(db,"posts");
     await deleteDoc(doc(db,"posts",id));
-    getDocs(postData).then((snapShot)=>{
-      const data:todos[]=snapShot.docs.map((doc)=>({id:doc.id ,...doc.data()} as todos))
-      setTodo(data);
-    })
-    onSnapshot(postData,(post)=>{
-      setTodo(post.docs.map((doc)=>({id:id,...doc.data()} as todos)))
+    const againpostData=collection(db,"posts");
+    onSnapshot(againpostData,(post)=>{
+      setTodo(post.docs.map((doc)=>({id:doc.id,...doc.data()} as todos)))
     })
   }else{
     const todo:todos[]=mytodo.filter((item:todos,index:number)=>(ind!==index));
