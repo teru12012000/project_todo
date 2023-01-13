@@ -3,7 +3,6 @@ export type link={
   link:string;
   target:string;
 }
-
 export const homelink:link[]=[
   {
     name:"個人用TODO",
