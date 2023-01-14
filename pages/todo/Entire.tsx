@@ -9,10 +9,12 @@ const Entire = () => {
   const [mytodo,setTodo]=useState<todos[]>([]);
   const [back,setBack]=useState<string[]>([]);
   const [font,setFont]=useState<string[]>([]);
+  const [disabled,setDisabled]=useState<boolean>(true);
   const submit=():void=>handleClick_entire(
     inputtext,
     setText,
-    setTodo
+    setTodo,
+    setDisabled,
   )
   useEffect(()=>{
     const postData=collection(db,"posts");
@@ -38,9 +40,11 @@ const Entire = () => {
         handleClick={submit}
         setTodo={setTodo}
         inputtext={inputtext}
+        disabled={disabled}
         setText={setText}
         setBack={setBack}
         setFont={setFont}
+        setDisabled={setDisabled}
       />
     </div>
   );

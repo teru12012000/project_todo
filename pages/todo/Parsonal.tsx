@@ -8,6 +8,7 @@ const Parsonal = () => {
   const [mytodo,setTodo]=useState<todos[]>([]); //リスト格納(todo)
   const [back,setBack]=useState<string[]>([]);//背景色
   const [font,setFont]=useState<string[]>([]);//文字の色
+  const [disabled,setDisabled]=useState<boolean>(true);
   //リロード時に保存用のデータを持ってくる
   useEffect(()=>{
     const json:string|null=localStorage.getItem("key")
@@ -25,6 +26,7 @@ const Parsonal = () => {
     setTodo,
     setBack,
     setFont,
+    setDisabled,
   );
   return (
     <div>
@@ -40,9 +42,11 @@ const Parsonal = () => {
         handleClick={submit}
         setTodo={setTodo}
         inputtext={inputtext}
+        disabled={disabled}
         setText={setText}
         setBack={setBack}
         setFont={setFont}
+        setDisabled={setDisabled}
       />
       <div
         style={{textAlign:"center"}}

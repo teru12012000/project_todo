@@ -11,16 +11,30 @@ type Props={
   back:string[];
   font:string[];
   inputtext:string;
+  disabled:boolean;
   setTodo:Dispatch<SetStateAction<todos[]>>;
   setText:Dispatch<SetStateAction<string>>;
   setBack:Dispatch<SetStateAction<string[]>>;
   setFont:Dispatch<SetStateAction<string[]>>;
+  setDisabled:Dispatch<SetStateAction<boolean>>;
   handleClick:()=>void;
 }
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 
-const Form:FC<Props> = ({mytodo,back,font,inputtext,handleClick,setTodo,setText,setBack,setFont}) => {
+const Form:FC<Props> = ({
+  mytodo,
+  back,
+  font,
+  inputtext,
+  disabled,
+  handleClick,
+  setTodo,
+  setText,
+  setBack,
+  setFont,
+  setDisabled
+}) => {
   //mytodoリストが更新されたときに色の設定
   useEffect(()=>{
     setBack(mytodo.map((item:todos)=>(item.checked?"gray":"#FFCC99")));
@@ -38,12 +52,13 @@ const Form:FC<Props> = ({mytodo,back,font,inputtext,handleClick,setTodo,setText,
               variant="outlined" 
               value={inputtext}
               size="small"
-              onChange={(e:ChangeEvent<HTMLInputElement>)=>handlechangetext(e,setText)}
+              onChange={(e:ChangeEvent<HTMLInputElement>)=>handlechangetext(e,setText,setDisabled)}
             />
             <Button 
               variant="contained"
               size="large"
-              onClick={()=>handleClick()}
+              disabled={disabled}
+              onClick={handleClick}
             >登録</Button>
           </div>
           <div>

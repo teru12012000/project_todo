@@ -11,8 +11,15 @@ export type todos={
 export const handlechangetext=(
   e: ChangeEvent<HTMLInputElement>,
   setText:Dispatch<SetStateAction<string>>,
-  )=>{
+  setDisabled:Dispatch<SetStateAction<boolean>>
+)=>{
   setText(e.currentTarget.value);
+  if(e.currentTarget.value){
+    setDisabled(false);
+  }else{
+    setDisabled(true);
+  }
+  
 }
 //個人用保存ボタン
 export const handlesave=(
@@ -32,6 +39,7 @@ export const handleClick_personal=(
   setTodo:Dispatch<SetStateAction<todos[]>>,
   setBack:Dispatch<SetStateAction<string[]>>,
   setFont:Dispatch<SetStateAction<string[]>>,
+  setDisabled:Dispatch<SetStateAction<boolean>>,
 )=>{
   const data:todos={
     id:undefined,
@@ -40,6 +48,7 @@ export const handleClick_personal=(
   }
   setTodo([data,...mytodo]);
   setText("");
+  setDisabled(true);
   setBack(["#FFCC99",...back]);
   setFont(["blue",...font])
 }
@@ -49,6 +58,7 @@ export const handleClick_entire=(
   inputtext:string,
   setText:Dispatch<SetStateAction<string>>,
   setTodo:Dispatch<SetStateAction<todos[]>>,
+  setDisabled:Dispatch<SetStateAction<boolean>>,
 )=>{
   const postData=collection(db,"posts");
   const docRef=addDoc(postData,{name:inputtext,checked:false})
@@ -63,7 +73,7 @@ export const handleClick_entire=(
     setTodo(post.docs.map((doc)=>({id:doc.id ,...doc.data()} as todos)))
   })
   setText("");
-  
+  setDisabled(true);
 }
 
 //アイテムを削除
