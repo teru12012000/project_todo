@@ -21,10 +21,10 @@ const Entire = () => {
     getDocs(postData).then((snapShot)=>{
       const data:todos[]=snapShot.docs.map((doc)=>({id:doc.id ,...doc.data()} as todos))
       setTodo(data);
-    })
+    });
     onSnapshot(postData,(post)=>{
       setTodo(post.docs.map((doc)=>({id:doc.id ,...doc.data()} as todos)))
-    })
+    });
   },[])
   return (
     <div>
