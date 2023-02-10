@@ -10,6 +10,7 @@ const Entire = () => {
   const [back,setBack]=useState<string[]>([]);
   const [font,setFont]=useState<string[]>([]);
   const [disabled,setDisabled]=useState<boolean>(true);
+  
   const submit=():void=>handleClick_entire(
     inputtext,
     setText,

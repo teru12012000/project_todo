@@ -101,8 +101,11 @@ export const changeRadio=async(
   id:string|undefined,
   check:boolean,
   mytodo:todos[],
+  setStill:Dispatch<SetStateAction<todos[]>>,
+  setComp:Dispatch<SetStateAction<todos[]>>,
   setTodo:Dispatch<SetStateAction<todos[]>>,
 )=>{
+  
   if(id){
     const postData=collection(db,"posts");
     await updateDoc(doc(db,"posts",id),{
@@ -121,4 +124,6 @@ export const changeRadio=async(
       ));
       setTodo(todo);
   }
+  setComp([]);
+  setStill([]);
 }

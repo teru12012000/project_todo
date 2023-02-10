@@ -35,9 +35,13 @@ const Form:FC<Props> = ({
   setFont,
   setDisabled
 }) => {
-  
+  const [still,setStill]=useState<todos[]>([]);
+  const [comp,setComp]=useState<todos[]>([]);
   //mytodoリストが更新されたときに色の設定
   useEffect(()=>{
+    mytodo.map((item)=>{
+      (item.checked)?(setComp((prev)=>[...prev,item])):(setStill((prev)=>[...prev,item]))
+    })
     setBack(mytodo.map((item:todos)=>(item.checked?"gray":"#FFCC99")));
     setFont(mytodo.map((item:todos)=>(item.checked?"Black":"blue")));
   },[mytodo])
@@ -62,11 +66,12 @@ const Form:FC<Props> = ({
               onClick={handleClick}
             >登録</Button>
           </div>
-          <h2 className="mt-5">未完了タスク</h2>
+          <h2 className="mt-5">タスク</h2>
+          <p>灰色が完了済み</p>
           <div className="container mt-5 border border-dark w-80 p-4 rounded">
             <Reorder.Group as="ol" axis="y" onReorder={setTodo} className={parsonal.ul} values={mytodo}>
               {mytodo.map((item:todos,index:number)=>(
-                !item.checked?(
+                
                   <Reorder.Item 
                     key={item.id} 
                     value={item}
@@ -81,7 +86,7 @@ const Form:FC<Props> = ({
                       {...label}
                       checked={item.checked}
                       className="text-start"
-                      onChange={()=>changeRadio(index,item.id,item.checked,mytodo,setTodo)}
+                      onChange={()=>changeRadio(index,item.id,item.checked,mytodo,setStill,setComp,setTodo)}
                     />
                     <p>{item.name}</p>
                     <IconButton 
@@ -94,46 +99,9 @@ const Form:FC<Props> = ({
                       <DeleteIcon className="text-end"/>
                     </IconButton>
                   </Reorder.Item>
-                ):null
               ))}
             </Reorder.Group>
           </div>
-          <h2 className="mt-5">完了タスク</h2>
-          <div className="container mt-5 border border-dark w-80 p-4 rounded">
-            <Reorder.Group as="ol" axis="y" onReorder={setTodo} className={parsonal.ul} values={mytodo}>
-              {mytodo.map((item:todos,index:number)=>(
-                item.checked?(
-                  <Reorder.Item 
-                    key={item.id} 
-                    value={item}
-                    style={{
-                      backgroundColor:back[index],
-                      color:font[index],
-                      marginTop:"10px"
-                      //boxShadow,y,
-                    }}
-                  >
-                    <Switch 
-                      {...label}
-                      checked={item.checked}
-                      className="text-start"
-                      onChange={()=>changeRadio(index,item.id,item.checked,mytodo,setTodo)}
-                    />
-                    <p>{item.name}</p>
-                    <IconButton 
-                      aria-label="delete" 
-                      color="primary"
-                      style={{cursor:"pointer"}}
-                      sx={{fontSize:30}}
-                      onClick={()=>deleteitem(index,item.id,mytodo,setTodo)}
-                    >
-                      <DeleteIcon className="text-end"/>
-                    </IconButton>
-                  </Reorder.Item>
-                ):null
-              ))}
-            </Reorder.Group>
-          </div>    
         </div>
       </div>
   );
