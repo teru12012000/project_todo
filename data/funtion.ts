@@ -108,8 +108,8 @@ export const changeRadio=async(
     await updateDoc(doc(db,"posts",id),{
         checked:!check,
       })
-    onSnapshot(postData,(post)=>{
-      setTodo(post.docs.map((doc)=>({id:doc.id,...doc.data()} as todos)))
+    onSnapshot(postData, (post) => {
+      setTodo(post.docs.map((doc) => ({ id: doc.id, ...doc.data() } as todos)));
     })
   }else{
     const todo:todos[]=mytodo.map((item:todos,index:number)=>(

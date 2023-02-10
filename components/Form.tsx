@@ -6,6 +6,7 @@ import { ChangeEvent, Dispatch, FC, SetStateAction, useEffect, useState } from "
 import { changeRadio, deleteitem, handlechangetext, todos } from "../data/funtion";
 import parsonal from "../styles/parsonal.css";
 import Back from "./Back";
+import { motion, MotionValue, Reorder, useMotionValue } from "framer-motion";
 type Props={
   mytodo:todos[];
   back:string[];
@@ -20,8 +21,6 @@ type Props={
   handleClick:()=>void;
 }
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
-
-
 const Form:FC<Props> = ({
   mytodo,
   back,
@@ -62,42 +61,41 @@ const Form:FC<Props> = ({
             >登録</Button>
           </div>
           <div>
-            <ul className={parsonal.ul}>
+            <Reorder.Group as="ol" axis="y" onReorder={setTodo} className={parsonal.ul} values={mytodo}>
               {mytodo.map((item:todos,index:number)=>(
-                <li key={index} 
-                  className={parsonal.li}
+                <Reorder.Item 
+                  key={item.id} 
+                  value={item}
                   style={{
                     backgroundColor:back[index],
-                    color:font[index]
+                    color:font[index],
+                    marginTop:"10px"
+                    //boxShadow,y,
                   }}
                 >
-                  <div>
-                  <Switch 
-                    {...label}
-                    checked={item.checked}
-                    onChange={()=>changeRadio(index,item.id,item.checked,mytodo,setTodo)}
-                  />
-
-                    {item.name}
-                  </div>
-                  <div
-                    onClick={()=>deleteitem(index,item.id,mytodo,setTodo)}
-                  >
+                 
+                    <Switch 
+                      {...label}
+                      checked={item.checked}
+                      className="text-start"
+                      onChange={()=>changeRadio(index,item.id,item.checked,mytodo,setTodo)}
+                    />
+                    <p>{item.name}</p>
                     <IconButton 
                       aria-label="delete" 
                       color="primary"
                       style={{cursor:"pointer"}}
                       sx={{fontSize:30}}
+                      onClick={()=>deleteitem(index,item.id,mytodo,setTodo)}
                     >
-                      <DeleteIcon />
+                      <DeleteIcon className="text-end"/>
                     </IconButton>
-                  </div>
-                </li>
+                </Reorder.Item>
               ))}
-            </ul>
-          </div>
+            </Reorder.Group>
+          </div>  
+        </div>
       </div>
-    </div>
   );
 }
 
