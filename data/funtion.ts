@@ -13,6 +13,7 @@ export const handlechangetext=(
   setText:Dispatch<SetStateAction<string>>,
   setDisabled:Dispatch<SetStateAction<boolean>>,
   mytodos:todos[],
+  setDel:Dispatch<SetStateAction<boolean>>,
 )=>{
   const deta:string[]=mytodos.map((item:todos)=>item.name);
   const value:string=e.currentTarget.value;
@@ -21,6 +22,12 @@ export const handlechangetext=(
     setDisabled(true);
   }else{
     setDisabled(false);
+  }
+  
+  if(value){
+    setDel(true)
+  }else{
+    setDel(false);
   }
   
 }

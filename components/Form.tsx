@@ -37,6 +37,7 @@ const Form:FC<Props> = ({
 }) => {
   const [still,setStill]=useState<todos[]>([]);
   const [comp,setComp]=useState<todos[]>([]);
+  const [del,setDel]=useState<boolean>(false);
   //mytodoリストが更新されたときに色の設定
   useEffect(()=>{
     setBack(mytodo.map((item:todos)=>(item.checked?"gray":"#FFCC99")));
@@ -54,7 +55,7 @@ const Form:FC<Props> = ({
               variant="outlined" 
               value={inputtext}
               size="small"
-              onChange={(e:ChangeEvent<HTMLInputElement>)=>handlechangetext(e,setText,setDisabled,mytodo)}
+              onChange={(e:ChangeEvent<HTMLInputElement>)=>handlechangetext(e,setText,setDisabled,mytodo,setDel)}
             />
             <Button 
               variant="contained"
@@ -90,6 +91,7 @@ const Form:FC<Props> = ({
                       color="primary"
                       style={{cursor:"pointer"}}
                       sx={{fontSize:30}}
+                      disabled={del}
                       onClick={()=>deleteitem(index,item.id,mytodo,setTodo)}
                     >
                       <DeleteIcon className="text-end"/>
