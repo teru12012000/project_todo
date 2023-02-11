@@ -39,9 +39,6 @@ const Form:FC<Props> = ({
   const [comp,setComp]=useState<todos[]>([]);
   //mytodoリストが更新されたときに色の設定
   useEffect(()=>{
-    mytodo.map((item)=>{
-      (item.checked)?(setComp((prev)=>[...prev,item])):(setStill((prev)=>[...prev,item]))
-    })
     setBack(mytodo.map((item:todos)=>(item.checked?"gray":"#FFCC99")));
     setFont(mytodo.map((item:todos)=>(item.checked?"Black":"blue")));
   },[mytodo])
@@ -57,7 +54,7 @@ const Form:FC<Props> = ({
               variant="outlined" 
               value={inputtext}
               size="small"
-              onChange={(e:ChangeEvent<HTMLInputElement>)=>handlechangetext(e,setText,setDisabled)}
+              onChange={(e:ChangeEvent<HTMLInputElement>)=>handlechangetext(e,setText,setDisabled,mytodo)}
             />
             <Button 
               variant="contained"
@@ -71,9 +68,8 @@ const Form:FC<Props> = ({
           <div className="container mt-5 border border-dark w-80 p-4 rounded">
             <Reorder.Group as="ol" axis="y" onReorder={setTodo} className={parsonal.ul} values={mytodo}>
               {mytodo.map((item:todos,index:number)=>(
-                
                   <Reorder.Item 
-                    key={item.id} 
+                    key={item.name} 
                     value={item}
                     style={{
                       backgroundColor:back[index],

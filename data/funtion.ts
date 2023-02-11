@@ -11,13 +11,16 @@ export type todos={
 export const handlechangetext=(
   e: ChangeEvent<HTMLInputElement>,
   setText:Dispatch<SetStateAction<string>>,
-  setDisabled:Dispatch<SetStateAction<boolean>>
+  setDisabled:Dispatch<SetStateAction<boolean>>,
+  mytodos:todos[],
 )=>{
-  setText(e.currentTarget.value);
-  if(e.currentTarget.value){
-    setDisabled(false);
-  }else{
+  const deta:string[]=mytodos.map((item:todos)=>item.name);
+  const value:string=e.currentTarget.value;
+  setText(value);
+  if(!value||deta.includes(value)){
     setDisabled(true);
+  }else{
+    setDisabled(false);
   }
   
 }
